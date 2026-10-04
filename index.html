@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión Ciudadana</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         INICIO DE SESIÓN
+    ========================== -->
+
+    <section id="login" class="pantalla">
+
+        <div class="login">
+
+            <h1>Gestión Ciudadana</h1>
+
+            <h2>Iniciar sesión</h2>
+
+            <form onsubmit="iniciarSesion(event)">
+
+                <label for="tipoUsuario">
+                    Tipo de usuario
+                </label>
+
+                <select id="tipoUsuario" required>
+
+                    <option value="">
+                        Selecciona una opción
+                    </option>
+
+                    <option value="administrador">
+                        Administrador
+                    </option>
+
+                    <option value="copaci">
+                        COPACI
+                    </option>
+
+                    <option value="ciudadano">
+                        Ciudadano
+                    </option>
+
+                </select>
+
+
+                <label for="password">
+                    Contraseña
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Ingresa tu contraseña"
+                    required
+                >
+
+
+                <button type="submit">
+                    Iniciar sesión
+                </button>
+
+
+                <p id="error"></p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PANEL ADMINISTRADOR
+    ========================== -->
+
+    <section id="administrador" class="pantalla panel">
+
+        <header>
+
+            <h1>
+                Panel de Administrador
+            </h1>
+
+            <p>
+                Gestión y administración ciudadana
+            </p>
+
+        </header>
+
+
+        <main>
+
+            <h2>
+                Bienvenido, Administrador
+            </h2>
+
+
+            <div class="tarjetas">
+
+                <button>
+                    👥 Gestionar usuarios
+                </button>
+
+                <button>
+                    📋 Gestionar reportes
+                </button>
+
+                <button>
+                    🏛️ Gestionar servicios
+                </button>
+
+                <button>
+                    📊 Ver estadísticas
+                </button>
+
+                <button>
+                    📢 Publicar avisos
+                </button>
+
+                <button>
+                    ⚙️ Configuración
+                </button>
+
+            </div>
+
+
+            <button
+                class="salir"
+                onclick="cerrarSesion()">
+
+                Cerrar sesión
+
+            </button>
+
+        </main>
+
+    </section>
+
+
+    <!-- =========================
+         PANEL COPACI
+    ========================== -->
+
+    <section id="copaci" class="pantalla panel">
+
+        <header>
+
+            <h1>
+                Panel COPACI
+            </h1>
+
+            <p>
+                Comité de Participación Ciudadana
+            </p>
+
+        </header>
+
+
+        <main>
+
+            <h2>
+                Bienvenido, COPACI
+            </h2>
+
+
+            <div class="tarjetas">
+
+                <button>
+                    📋 Consultar reportes
+                </button>
+
+                <button>
+                    📢 Publicar avisos
+                </button>
+
+                <button>
+                    🏘️ Gestionar comunidad
+                </button>
+
+                <button>
+                    📅 Ver reuniones
+                </button>
+
+                <button>
+                    📝 Crear solicitud
+                </button>
+
+                <button>
+                    📊 Consultar estadísticas
+                </button>
+
+            </div>
+
+
+            <button
+                class="salir"
+                onclick="cerrarSesion()">
+
+                Cerrar sesión
+
+            </button>
+
+        </main>
+
+    </section>
+
+
+    <!-- =========================
+         PANEL CIUDADANO
+    ========================== -->
+
+    <section id="ciudadano" class="pantalla panel">
+
+        <header>
+
+            <h1>
+                Portal Ciudadano
+            </h1>
+
+            <p>
+                Servicios y atención para la ciudadanía
+            </p>
+
+        </header>
+
+
+        <main>
+
+            <h2>
+                Bienvenido, Ciudadano
+            </h2>
+
+
+            <div class="tarjetas">
+
+                <button>
+                    📝 Realizar un reporte
+                </button>
+
+                <button>
+                    🔎 Consultar mi reporte
+                </button>
+
+                <button>
+                    📄 Consultar trámites
+                </button>
+
+                <button>
+                    🏛️ Servicios públicos
+                </button>
+
+                <button>
+                    📅 Solicitar una cita
+                </button>
+
+                <button>
+                    📢 Avisos ciudadanos
+                </button>
+
+            </div>
+
+
+            <button
+                class="salir"
+                onclick="cerrarSesion()">
+
+                Cerrar sesión
+
+            </button>
+
+        </main>
+
+    </section>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        function iniciarSesion(event) {
+
+            event.preventDefault();
+
+
+            const tipoUsuario =
+                document.getElementById("tipoUsuario").value;
+
+
+            const password =
+                document.getElementById("password").value;
+
+
+            const error =
+                document.getElementById("error");
+
+
+            /*
+                CONTRASEÑAS
+            */
+
+            const contrasenas = {
+
+                administrador: "jonyinsano",
+
+                copaci: "perronyosoy",
+
+                ciudadano: "noob67"
+
+            };
+
+
+            /*
+                COMPROBAR CONTRASEÑA
+            */
+
+            if (password !== contrasenas[tipoUsuario]) {
+
+                error.textContent =
+                    "Contraseña incorrecta. Intenta nuevamente.";
+
+                error.style.color = "#c0392b";
+
+                return;
+
+            }
+
+
+            /*
+                OCULTAR PANTALLAS
+            */
+
+            document
+                .querySelectorAll(".pantalla")
+                .forEach(function(pantalla) {
+
+                    pantalla.style.display = "none";
+
+                });
+
+
+            /*
+                MOSTRAR PANEL
+            */
+
+            if (tipoUsuario === "administrador") {
+
+                document
+                    .getElementById("administrador")
+                    .style.display = "block";
+
+            }
+
+            else if (tipoUsuario === "copaci") {
+
+                document
+                    .getElementById("copaci")
+                    .style.display = "block";
+
+            }
+
+            else if (tipoUsuario === "ciudadano") {
+
+                document
+                    .getElementById("ciudadano")
+                    .style.display = "block";
+
+            }
+
+        }
+
+
+        /*
+            CERRAR SESIÓN
+        */
+
+        function cerrarSesion() {
+
+            document
+                .querySelectorAll(".pantalla")
+                .forEach(function(pantalla) {
+
+                    pantalla.style.display = "none";
+
+                });
+
+
+            document.getElementById("password").value = "";
+
+            document.getElementById("tipoUsuario").value = "";
+
+            document.getElementById("error").textContent = "";
+
+
+            document
+                .getElementById("login")
+                .style.display = "flex";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
